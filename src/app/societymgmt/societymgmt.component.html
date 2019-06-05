@@ -1,86 +1,49 @@
-<!-- <p>
-  societymgmt works!
-</p> -->
-
-
-<div [appHighlighter]="themeColor"> 
-
-<!-- <div style="text-align: right;margin-top: -36px;">
-  <button mat-raised-button color="primary" routerLink="/societymgmt/1/building">Building</button>
-    <button mat-raised-button color="primary" routerLink="/societymgmt/1/flats">Flats</button>
-    <button mat-raised-button color="primary" routerLink="/societymgmt/1/owner">Owner</button>
-    <button mat-raised-button color="primary" routerLink="/societymgmt/1/society">Society</button>
-    <button mat-raised-button color="primary" routerLink="/societymgmt/1/tenants">Tenants</button>
-    <button mat-raised-button color="primary" routerLink="/login">Login</button>
-	
-</div> -->
-
-<div> 
-  <mat-toolbar color="primary" >
-
-
-    <a mat-button class="companyName" routerLink="/">
-      <span>Angular-Example</span>
-    </a>
-    <span class ="example-spacer"></span>
-    <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="/societymgmt/1/building">Building</a>
-      <a mat-button routerLink="/societymgmt/1/flats">Flats</a>
-      <a mat-button routerLink="/societymgmt/1/owner">Owner</a>
-      <a mat-button routerLink="/societymgmt/1/society">Society</a>
-      <a mat-button routerLink="/societymgmt/1/tenants">Tenants</a>
-      <!-- <a mat-button routerLink="/login">Logout</a> -->
-      
-          <mat-icon style="font-size: 20px;margin-right: -3%">person</mat-icon>
-          <button mat-button [matMenuTriggerFor]="menu">Admin</button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>This is Admin</button>
-            <button mat-menu-item routerLink="/login">Logout</button>
-          </mat-menu>
-          <!-- <a mat-button routerLink="/login">Admin</a>
-         -->
-    </div>
-
-  </mat-toolbar>
-
-  <br>
-  <br>
-
-  <div class="example-date">
-     {{currentDate | date : 'medium'}}
-
-    
-  </div><br>
-  
-<br>
+<div [appHighlighter]="themeColor">
   <div>
-    <mat-radio-group aria-label="Select an option" class="example-theme"> 
-        <mat-radio-button value="white" appHighlighter  (click)="showselectedTheme('white')"> White Theme </mat-radio-button>
-        <mat-radio-button value="light" appHighlighter  (click)="showselectedTheme('light')"> Light Theme </mat-radio-button>
-       <mat-radio-button value="dark" appHighlighter   (click)="showselectedTheme('dark')"> Dark Theme </mat-radio-button>
-   
-      
-    </mat-radio-group>
-  </div>
-
-  <div *ngIf="loginUserInfo && loginUserInfo.name">
+    <mat-toolbar color="primary">
+      <a mat-button class="companyName" routerLink="/">
+        <span>Angular-Example</span>
+      </a>
+      <span class="example-spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <a mat-button routerLink="/societymgmt/1/building">Building</a>
+        <a mat-button routerLink="/societymgmt/1/flats">Flats</a>
+        <a mat-button routerLink="/societymgmt/1/owner">Owner</a>
+        <a mat-button routerLink="/societymgmt/1/society">Society</a>
+        <a mat-button routerLink="/societymgmt/1/tenants">Tenants</a>
+        <mat-icon style="font-size: 20px;margin-right: -3%">person</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menu">Admin</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>This is Admin</button>
+          <button mat-menu-item routerLink="/login">Logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <br>
+    <br>
+    <div class="example-date">
+      {{currentDate | date : 'medium'}}
+    </div><br>
+    <br>
+    <div>
+      <mat-radio-group aria-label="Select an option" class="example-theme">
+        <mat-radio-button value="white" appHighlighter (click)="showselectedTheme('white')"> White Theme
+        </mat-radio-button>
+        <mat-radio-button value="light" appHighlighter (click)="showselectedTheme('light')"> Light Theme
+        </mat-radio-button>
+        <mat-radio-button value="dark" appHighlighter (click)="showselectedTheme('dark')"> Dark Theme
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div *ngIf="loginUserInfo && loginUserInfo.name">
       Welcome {{loginUserInfo.name}}<br>
       Id: {{loginUserInfo.id}}<br>
       {{loginUserInfo.email}}<br>
       {{loginUserInfo.phone}}<br>
       {{loginUserInfo.age}}<br>
     </div>
-
- 
-
- <br>
+    <br>
+  </div>
+  <router-outlet>
+  </router-outlet>
 </div>
-
-
-
-<router-outlet>
-
-</router-outlet>
-</div>
-<!-- --------Parent {{temp}}---
-<app-society [societyId] = "temp" (someText)= " temp = $event"></app-society> -->
