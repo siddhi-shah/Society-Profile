@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import {SocietyService} from '../../societymgmt/reusable/services/society.service';
-import {CommonServicesService} from '../../societymgmt/reusable/services/common-services.service';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ redirectUrl;
 
 
   constructor(public _router:Router,public _societyService:SocietyService,
-    public _activatedRoute:ActivatedRoute,public _commonService:CommonServicesService) { }
+    public _activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
    // this.redirectUrl = this._activatedRoute.snapshot.queryParams['redirectUrl'] || 'societymgmt';
@@ -33,7 +33,7 @@ redirectUrl;
           console.log(r.dbResponse);
           console.log(r.dbResponse[0].ownerid);
           let ownerId = r.dbResponse[0].ownerid;
-          this._commonService.emitLoginUserInfo(ownerId);
+         // this._commonService.emitLoginUserInfo(ownerId);
           this._router.navigate(['societymgmt',r.dbResponse[0].ownerid,'flats']);
           // this._commonService.emitLoginUserInfo(r.dbResponse[0].ownerid);
         //} else {

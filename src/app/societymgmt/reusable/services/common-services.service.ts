@@ -7,7 +7,7 @@ import { EventEmitter } from '@angular/core';
 export class CommonServicesService {
 
    societyInfo = new EventEmitter<any>();
-   loginUserInfo = new EventEmitter<any>();
+  // loginUserInfo = new EventEmitter<any>();
 
   constructor() { }
 
@@ -15,10 +15,10 @@ export class CommonServicesService {
   {
     this.societyInfo.emit(societyId);
   }
-  emitLoginUserInfo(ownerId)
-  {
-    this.loginUserInfo.emit(ownerId);
-  }
+  // emitLoginUserInfo(ownerId)
+  // {
+  //   this.loginUserInfo.emit(ownerId);
+  // }
 
   
 

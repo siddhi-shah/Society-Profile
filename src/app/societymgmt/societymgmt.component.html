@@ -32,9 +32,9 @@
       <!-- <a mat-button routerLink="/login">Logout</a> -->
       
           <mat-icon style="font-size: 20px;margin-right: -3%">person</mat-icon>
-          <button mat-button [matMenuTriggerFor]="menu">Admin</button>
+          <button mat-button [matMenuTriggerFor]="menu">{{loginUserInfo.name}}</button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>This is Admin</button>
+            <button mat-menu-item>Profile</button>
             <button mat-menu-item routerLink="/login">Logout</button>
           </mat-menu>
           <!-- <a mat-button routerLink="/login">Admin</a>
@@ -46,37 +46,25 @@
   <br>
   <br>
 
-  <div class="example-date">
-     {{currentDate | date : 'medium'}}
-
-    
-  </div><br>
-  
-<br>
-  <div>
-    <mat-radio-group aria-label="Select an option" class="example-theme"> 
-        <mat-radio-button value="white" appHighlighter  (click)="showselectedTheme('white')"> White Theme </mat-radio-button>
-        <mat-radio-button value="light" appHighlighter  (click)="showselectedTheme('light')"> Light Theme </mat-radio-button>
-       <mat-radio-button value="dark" appHighlighter   (click)="showselectedTheme('dark')"> Dark Theme </mat-radio-button>
-   
-      
-    </mat-radio-group>
-  </div>
-
-  <div *ngIf="loginUserInfo && loginUserInfo.name">
-      Welcome {{loginUserInfo.name}}<br>
-      Id: {{loginUserInfo.id}}<br>
-      {{loginUserInfo.email}}<br>
-      {{loginUserInfo.phone}}<br>
-      {{loginUserInfo.age}}<br>
-    </div>
-
- 
-
- <br>
 </div>
 
+<div class="example-date">
+    {{currentDate | date : 'medium'}}
 
+   
+ </div><br>
+ 
+
+ <div >
+   <mat-radio-group aria-label="Select an option" class="example-theme"> 
+       <mat-radio-button value="white" appHighlighter  (click)="showselectedTheme('white')"> White Theme </mat-radio-button>
+       <mat-radio-button value="light" appHighlighter  (click)="showselectedTheme('light')"> Light Theme </mat-radio-button>
+      <mat-radio-button value="dark" appHighlighter   (click)="showselectedTheme('dark')"> Dark Theme </mat-radio-button>
+  
+     
+   </mat-radio-group>
+ </div>
+ <br>
 
 <router-outlet>
 

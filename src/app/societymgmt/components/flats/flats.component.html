@@ -6,7 +6,7 @@
 <mat-radio-group [(ngModel)] = "selectedOption" aria-label="Select an option"> 
   <mat-radio-button value="myFlats"   (click)="getFlatDetailByOwnerId()"> My Flats </mat-radio-button>
   
-  <mat-radio-button value="allFlats"   (click)="showFlatDetailsBySocietyId(selectedSocietyId)"> All Flats </mat-radio-button>
+  <mat-radio-button value="allFlats"   (click)="getFlatDetailBySocietyId(selectedSocietyId)"> All Flats </mat-radio-button>
 </mat-radio-group>
 
 <br>
@@ -57,17 +57,17 @@
       <td mat-cell *matCellDef="let flat"> {{flat.buildingname | lowercase}} </td>
     </ng-container>
   
-    <!-- Society Id Column -->
+    <!-- Society Id Column
     <ng-container matColumnDef="societyid">
       <th mat-header-cell *matHeaderCellDef> Society Id </th>
       <td mat-cell *matCellDef="let flat"> {{flat.societyid}} </td>
-    </ng-container>
+    </ng-container> -->
     
-    <!-- Tenant Id Column -->
+    <!-- Tenant Id Column
      <ng-container matColumnDef="tenantid">
       <th mat-header-cell *matHeaderCellDef> Tenant Id </th>
       <td mat-cell *matCellDef="let flat"> {{flat.tenantid}} </td>
-    </ng-container>
+    </ng-container> -->
     
     <!-- Pending Payment Column -->
     <ng-container matColumnDef="pendingpayment">
@@ -92,6 +92,37 @@
       <th mat-header-cell *matHeaderCellDef> Owner Id </th>
       <td mat-cell *matCellDef="let flat"> {{flat.ownerid}} </td>
     </ng-container>
+
+    <!---Maintenance Amount -->
+    <ng-container matColumnDef="maintenanceAmount">
+        <th mat-header-cell *matHeaderCellDef> Maintenance Amount </th>
+        <td mat-cell *matCellDef="let flat"> {{flat.maintenanceAmount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role" >
+        <th mat-header-cell *matHeaderCellDef [style.display]="'none'"> Role </th>
+        <td mat-cell *matCellDef="let flat" [style.display]="'none'"> {{flat.role}} </td>
+      </ng-container>
+      
+      <!-- <ng-container matColumnDef="actions" >
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let flat"> 
+          <button mat-button> Show Receipt</button>  
+        </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          
+            <td mat-cell *matCellDef="let flat">
+                <span *ngIf="flat.role == 1">
+                    <button mat-raised-button color="primary"> Show Receipt</button>
+                </span>
+                </td>
+            <!-- </mat-cell> -->
+          
+        </ng-container>
+ 
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

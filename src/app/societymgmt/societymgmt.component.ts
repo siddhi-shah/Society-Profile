@@ -12,7 +12,7 @@ export class SocietymgmtComponent implements OnInit {
   temp;
   themeColor = "white";
   currentDate=new Date();
-  xyz;
+ 
   loginUserInfo = {
     name:"",
     id:"",
@@ -45,12 +45,12 @@ export class SocietymgmtComponent implements OnInit {
       let ownerId = params.ownerId;
       console.log("333333333333",ownerId);
       this.getloginUserInfo(ownerId);
-    })
+    });
 
-      this._commonService.loginUserInfo.subscribe((ownerId)=>{
-          console.log("ffghgfhxfg",ownerId);
-          this.getloginUserInfo(ownerId);
-      });
+      // this._commonService.loginUserInfo.subscribe((ownerId)=>{
+      //     console.log("ffghgfhxfg",ownerId);
+      //     this.getloginUserInfo(ownerId);
+      // });
   }
   getloginUserInfo(ownerId)
   {

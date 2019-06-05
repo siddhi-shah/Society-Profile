@@ -27,6 +27,7 @@ import { RegisterUserComponent } from './home/register-user/register-user.compon
 
 
 
+
 const routes:Routes=[
   // {path:"" ,redirectTo: '/societymgmt', pathMatch:"full"},
  
@@ -65,6 +66,8 @@ const routes:Routes=[
     HighlighterDirective,
     
     RegisterUserComponent
+    
+    
    
     
   ],

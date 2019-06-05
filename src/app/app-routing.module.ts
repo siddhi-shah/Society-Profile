@@ -26,6 +26,7 @@ const routes: Routes = [
         ]},
   {path : "login", component:LoginComponent},
   {path : "registerUser", component:RegisterUserComponent},
+ 
   {path:"error",component:ErrorComponent},
   {path:"**",component:ErrorComponent}];
 

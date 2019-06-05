@@ -103,7 +103,7 @@ export class FlatsComponent implements OnInit {
     console.log(this.dataSource);
    }
 
-   displayedColumns: string[] = ['flatid', 'flatname', 'buildingname', 'societyid','tenantid','pendingpayment','createdDate','updatedDate','ownerid'];
+   displayedColumns: string[] = ['flatid', 'flatname', 'buildingname','pendingpayment','createdDate','updatedDate','ownerid','maintenanceAmount','role','actions'];
   // dataSource = this.selectedFlatDetails;
   // seletectedFlatDetails(sid)
   // {
