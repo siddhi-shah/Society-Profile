@@ -1,0 +1,19 @@
+<p>
+  calculator works!
+</p>
+
+Num 1 <input type="text" [(ngModel)]="num1">
+Num 2<input type ="text"[(ngModel)]="num2">
+<br>
+<button (click)="add(num1,num2)">Add</button>
+{{sum}}
+<br>
+<button (click)="subtract(num1,num2)">Subtract</button>
+{{difference}}
+<br>
+<button (click)="division(num1,num2)">Division</button>
+{{divide}}
+<br>
+<button (click)="multiply(num1,num2)">Multiply</button>
+{{mult}}
+<br>

@@ -1,0 +1,31 @@
+
+
+
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+<form>
+  <p>
+    <mat-form-field>
+        <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+        <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+    </mat-form-field>
+  </p>
+
+  <p *ngIf="error" class="error">
+    {{ error }}
+  </p>
+
+  <div class="button">
+      <button mat-raised-button color="primary" (click)="onLogin(username,password)">Login</button>
+      <button mat-raised-button color="primary"  routerLink="/registerUser">Register User</button>
+  </div>
+
+</form>
+</mat-card-content>
+</mat-card>

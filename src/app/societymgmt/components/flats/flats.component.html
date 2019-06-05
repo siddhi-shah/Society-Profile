@@ -1,0 +1,109 @@
+<h3 appHighlighter>Flat Details</h3>
+
+<br>
+<br>
+
+<mat-radio-group [(ngModel)] = "selectedOption" aria-label="Select an option"> 
+  <mat-radio-button value="myFlats"   (click)="getFlatDetailByOwnerId()"> My Flats </mat-radio-button>
+  
+  <mat-radio-button value="allFlats"   (click)="showFlatDetailsBySocietyId(selectedSocietyId)"> All Flats </mat-radio-button>
+</mat-radio-group>
+
+<br>
+<br>
+ 
+  
+<mat-form-field>
+      <mat-label>Select Society ID</mat-label> 
+      <mat-select [(ngModel)]="selectedSocietyId" (selectionChange)="showFlatAndSocietyDetailBySocietyId(selectedSocietyId)">
+        <mat-option *ngFor="let uniqueid of uniqueSocietyId" [value]=uniqueid >
+          {{uniqueid}}
+        </mat-option>
+      </mat-select>
+ </mat-form-field>
+
+
+
+
+    <!-- {{123.456789 | number:'6.4-5'}}
+    {{ 0.93 | percent}} -->
+
+
+    <app-society [societyId]="1"></app-society>
+
+ 
+
+<br>
+<div *ngIf="selectedFlatDetails">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+
+    <!-- Flat Id Column -->
+    <ng-container matColumnDef="flatid">
+      <th mat-header-cell *matHeaderCellDef> Flat Id </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.flatid}} </td>
+    </ng-container>
+  
+    <!-- Flat Name Column -->
+    <ng-container matColumnDef="flatname">
+      <th mat-header-cell *matHeaderCellDef> Flat Name </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.flatname | reverseCharacters}} </td>
+    </ng-container>
+  
+    <!-- Building Name Column -->
+    <ng-container matColumnDef="buildingname">
+      <th mat-header-cell *matHeaderCellDef> Building Name </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.buildingname | lowercase}} </td>
+    </ng-container>
+  
+    <!-- Society Id Column -->
+    <ng-container matColumnDef="societyid">
+      <th mat-header-cell *matHeaderCellDef> Society Id </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.societyid}} </td>
+    </ng-container>
+    
+    <!-- Tenant Id Column -->
+     <ng-container matColumnDef="tenantid">
+      <th mat-header-cell *matHeaderCellDef> Tenant Id </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.tenantid}} </td>
+    </ng-container>
+    
+    <!-- Pending Payment Column -->
+    <ng-container matColumnDef="pendingpayment">
+      <th mat-header-cell *matHeaderCellDef> Pending Payment </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.pendingpayment | currency : "INR":true}} </td>
+    </ng-container>
+    
+    <!-- Created Date Column -->
+     <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef> Created Date </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.createdDate}} </td>
+    </ng-container>
+    
+    <!-- Updated Date Column -->
+     <ng-container matColumnDef="updatedDate">
+      <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.updatedDate}} </td>
+    </ng-container>
+    
+  <!-- Owner Id Column -->
+     <ng-container matColumnDef="ownerid">
+      <th mat-header-cell *matHeaderCellDef> Owner Id </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.ownerid}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div> 
+
+
+<br>
+  
+  
+  
+
+ 
+
+   

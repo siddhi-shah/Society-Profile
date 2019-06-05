@@ -1,0 +1,28 @@
+.column {
+    float: left;
+    width: 22%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .label
+  {
+    margin-right: 22px;
+  }
+  .dropdownlist
+  {
+    width: 46px;
+  }
+
+
+  table {
+    width: 100%;
+  }
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
