@@ -7,6 +7,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {SocietyMaterialModule} from './material-module';
 
+import { PaymentHistoryDialogBox } from './societymgmt/components/flats/flats.component';
+
+import { FlatDialogBox } from './societymgmt/components/flats/flats.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './home/login/login.component';
 import { ErrorComponent } from './error/error.component';
@@ -20,6 +23,7 @@ import { OwnerComponent } from './societymgmt/components/owner/owner.component';
 import { ReverseCharactersPipe } from './societymgmt/reusable/pipes/reverse-characters.pipe';
 import { HighlighterDirective } from './societymgmt/reusable/directives/highlighter.directive';
 import { RegisterUserComponent } from './home/register-user/register-user.component';
+import { PendingpaymentComponent } from './societymgmt/components/flats/pendingpayment/pendingpayment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,10 @@ import { RegisterUserComponent } from './home/register-user/register-user.compon
     OwnerComponent,
     ReverseCharactersPipe,
     HighlighterDirective,
-    RegisterUserComponent
+    RegisterUserComponent,
+    PaymentHistoryDialogBox,
+    PendingpaymentComponent,
+    FlatDialogBox
   ],
   imports: [
     BrowserModule,
@@ -44,8 +51,10 @@ import { RegisterUserComponent } from './home/register-user/register-user.compon
    BrowserAnimationsModule,
    [MatButtonModule, MatCheckboxModule],
    SocietyMaterialModule,
-   ReactiveFormsModule
+   ReactiveFormsModule,
+   
   ],
+  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,7 @@ import {catchError} from 'rxjs/operators';
 })
 export class SocietyService {
   hostName= "http://nodebw-env.xctnnannuz.us-east-1.elasticbeanstalk.com";
+  lambdaHostName = "https://uedyhinf4i.execute-api.us-east-1.amazonaws.com"
   constructor(public _httpclient : HttpClient) { }
 
   login(email: string, password: string) :Observable<any>{
@@ -16,6 +17,25 @@ export class SocietyService {
       password: password
     });
   } 
+
+  getPaymentStructure(paymentStructureId) {
+    return this._httpclient.get(`${this.lambdaHostName}/dev/societyReciept?paymentStructureId=${paymentStructureId}`)
+    .pipe(catchError((error:HttpErrorResponse) => throwError(error)
+  ));
+  }
+
+  getPaymentHistory(flatId): Observable<any>{
+    return this._httpclient.get(`${this.lambdaHostName}/dev/paymentHistory?flatId=${flatId}`)
+      .pipe(catchError((error:HttpErrorResponse) => throwError(error)
+    ));
+  }
+
+  updateFlatPayment(paymentObj): Observable<any>{
+    console.log("*****><><><>", paymentObj);
+    return this._httpclient.put(`${this.lambdaHostName}/dev/pendingPayment`,paymentObj)
+      .pipe(catchError((error:HttpErrorResponse) => throwError(error)
+    ));
+  }
 
 
   getflatsbyowner(ownerID): Observable<any>{

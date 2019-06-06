@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="formStyle row justify-content-center childContainer s-bg">
+      <div class=" col-xs-12 col-md-8 col-lg-8 col-xl-8">
+          <div class="row">
+              <div class="col text-center">
+                  <h1><b>{{pageTitle3}}</b></h1>
+                  <!-- <p>{{pageDesc3}}</p> -->
+              </div>
+          </div>
+          {{pendingPaymentFlatObj | json}}
+          <div class="row align-items-center text-center" ng-app>
+              <div class="col">
+                  <form class="formStyle" name="form">
+                      <div class="form-group">
+
+                          <mat-form-field class="col-xs-12 col-sm-2 example-full-width">
+                              <label>All Municipal Dues</label>
+                              <input [disabled]="isEditable" matInput type="number" name="dues" class="form-control"
+                                  [(ngModel)]="paymentStructure.dues">
+                          </mat-form-field>
+                          <mat-form-field class="col-xs-12 col-sm-2 example-full-width">
+                              <label>Sinking Funds</label>
+                              <input [disabled]="isEditable" matInput type="number" name="funds" class="form-control"
+                                  [(ngModel)]="paymentStructure.funds">
+                          </mat-form-field>
+                          <mat-form-field class="col-xs-12 col-sm-2 example-full-width">
+                              <label>Periodic Building Maintenance</label>
+                              <input [disabled]="isEditable" matInput type="number" name="maintenance"
+                                  class="form-control" [(ngModel)]="paymentStructure.buildingmaintenance">
+                          </mat-form-field>
+                          <mat-form-field class="col-xs-12 col-sm-2 example-full-width">
+                              <label>Common Area Maintenance & Parking</label>
+                              <input [disabled]="isEditable" matInput type="number" name="parking"
+                                  class="form-control" [(ngModel)]="paymentStructure.parking">
+                          </mat-form-field><br>
+                          <mat-form-field *ngIf="pendingPaymentFlatObj" class="col-xs-12 col-sm-2 example-full-width">
+                            <label>Pending Amount</label>
+                            <input [disabled]="isEditable" matInput type="number" name="pendingAmt"
+                                class="form-control" [(ngModel)]="pendingPaymentFlatObj.pendingpayment">
+                        </mat-form-field>
+                        <mat-form-field *ngIf="pendingPaymentFlatObj" class="col-xs-12 col-sm-2 example-full-width">
+                          <label>This Month Maintenance</label>
+                          <input [disabled]="isEditable" matInput type="number" name="maintenanceAmt"
+                              class="form-control" [(ngModel)]="pendingPaymentFlatObj.maintenanceAmount">
+                      </mat-form-field> 
+                      <mat-form-field  class="col-xs-12 col-sm-2 example-full-width">
+                        <label>Total Payable</label>
+                        <input [disabled]="isEditable" matInput type="number" name="totalAmt"
+                            class="form-control" [(ngModel)]="paymentStructure.total">
+                      </mat-form-field><br>
+                          <mat-form-field class=" col-xs-12 col-sm-2 example-full-width">
+                              <label>
+                                  <button class="btn btn-primary" [disabled]="!payingAmount" (click)="payment(payingAmount)">Pay</button>
+                               </label> 
+                              <input [disabled]="isSocietyAdmin" matInput type="number" name="societyAdmin" class="form-control"
+                                  [(ngModel)]="payingAmount">
+
+                          </mat-form-field>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
