@@ -58,7 +58,4 @@ export class PendingpaymentComponent implements OnInit {
     console.log("payment..........",this.pendingPaymentFlatObj);
     this.getPaymentStructure(this.pendingPaymentFlatObj.paymentStructureId);
   }
-
-
-
 }

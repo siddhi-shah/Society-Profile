@@ -130,7 +130,7 @@ export class FlatsComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['flatid', 'flatname', 'buildingname', 'societyid', 'tenantid', 'pendingpayment', 'maintenanceAmount','createdDate', 'updatedDate', 'ownerid', 'pay', 'paymentHistory'];
+  displayedColumns: string[] = ['flatid', 'flatname', 'FlatType', 'buildingname', 'tenantid', 'pendingpayment', 'maintenanceAmount','createdDate', 'updatedDate', 'ownerid', 'pay', 'paymentHistory'];
 
   // showFlatPatmentHistory(flatId){
   //   this._SocietyService.getPaymentHistory(flatId).subscribe((data) => {
