@@ -21,28 +21,47 @@
     </mat-toolbar>
     <br>
     <br>
-    <div class="example-date">
-      {{currentDate | date : 'medium'}}
-    </div><br>
-    <br>
     <div>
-      <mat-radio-group aria-label="Select an option" class="example-theme">
-        <mat-radio-button value="white" appHighlighter (click)="showselectedTheme('white')"> White Theme
-        </mat-radio-button>
-        <mat-radio-button value="light" appHighlighter (click)="showselectedTheme('light')"> Light Theme
-        </mat-radio-button>
-        <mat-radio-button value="dark" appHighlighter (click)="showselectedTheme('dark')"> Dark Theme
-        </mat-radio-button>
-      </mat-radio-group>
+      <div class="row">
+        <div class="col-3">
+            <img width="30" height="230" class="profile" mat-card-image src="http://lorempixel.com/640/360" alt="Photo of a Shiba Inu">
+        </div>
+          
+        <div class="col-3" *ngIf="loginUserInfo && loginUserInfo.name">
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                  <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                  <mat-card-title>{{loginUserInfo.name}}</mat-card-title>
+                  <mat-card-subtitle>{{loginUserInfo.id}}</mat-card-subtitle>
+                  <mat-card-subtitle>{{loginUserInfo.email}}</mat-card-subtitle>
+                  <mat-card-subtitle>{{loginUserInfo.phone}}</mat-card-subtitle>
+                  <mat-card-subtitle>{{loginUserInfo.dateOfBirth}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions>
+                  <button mat-button>Edit Info</button>
+                  <button mat-button>More</button>
+                </mat-card-actions>
+              </mat-card>
+        </div>
+
+        <div class="col-6">
+            <div >
+                {{currentDate | date }}
+              </div>
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="white" appHighlighter (click)="showselectedTheme('white')"> White Theme
+            </mat-radio-button>
+            <mat-radio-button value="light" appHighlighter (click)="showselectedTheme('light')"> Light Theme
+            </mat-radio-button>
+            <mat-radio-button value="dark" appHighlighter (click)="showselectedTheme('dark')"> Dark Theme
+            </mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+        <br>
+      </div>
     </div>
-    <div *ngIf="loginUserInfo && loginUserInfo.name">
-      Welcome {{loginUserInfo.name}}<br>
-      Id: {{loginUserInfo.id}}<br>
-      {{loginUserInfo.email}}<br>
-      {{loginUserInfo.phone}}<br>
-      {{loginUserInfo.age}}<br>
-    </div>
-    <br>
   </div>
   <router-outlet>
   </router-outlet>

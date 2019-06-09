@@ -19,20 +19,20 @@ export class SocietyService {
   } 
 
   getPaymentStructure(paymentStructureId) {
-    return this._httpclient.get(`${this.lambdaHostName}/dev/societyReciept?paymentStructureId=${paymentStructureId}`)
+    return this._httpclient.get(`${this.lambdaHostName}/dev/payment-and-reciept/societyReciept?paymentStructureId=${paymentStructureId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)
   ));
   }
 
   getPaymentHistory(flatId): Observable<any>{
-    return this._httpclient.get(`${this.lambdaHostName}/dev/paymentHistory?flatId=${flatId}`)
+    return this._httpclient.get(`${this.lambdaHostName}/dev/payment-and-reciept/paymentHistory?flatId=${flatId}`)
       .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
   }
 
   updateFlatPayment(paymentObj): Observable<any>{
     console.log("*****><><><>", paymentObj);
-    return this._httpclient.put(`${this.lambdaHostName}/dev/pendingPayment`,paymentObj)
+    return this._httpclient.put(`${this.lambdaHostName}/dev/payment-and-reciept/pendingPayment`,paymentObj)
       .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
   }
