@@ -8,7 +8,7 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {SocietyMaterialModule} from './material-module';
 
 import { PaymentHistoryDialogBox } from './societymgmt/components/flats/flats.component';
-
+import { confirmationDialog } from './societymgmt/components/flats/flats.component';
 import { FlatDialogBox } from './societymgmt/components/flats/flats.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './home/login/login.component';
@@ -41,7 +41,8 @@ import { PendingpaymentComponent } from './societymgmt/components/flats/pendingp
     RegisterUserComponent,
     PaymentHistoryDialogBox,
     PendingpaymentComponent,
-    FlatDialogBox
+    FlatDialogBox,
+    confirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -54,7 +55,7 @@ import { PendingpaymentComponent } from './societymgmt/components/flats/pendingp
    ReactiveFormsModule,
    
   ],
-  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox],
+  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog],
   providers: [],
   bootstrap: [AppComponent]
 })

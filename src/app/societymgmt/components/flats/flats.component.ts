@@ -117,8 +117,19 @@ export class FlatsComponent implements OnInit {
       () => {
         this.isClosedValue = true
         this.showFlatAndSocietyDetailBySocietyId(societyId);
-        alert("Payment successfully updated!");
+        this.openDialog();
+        //alert("Payment successfully updated!");
       });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(confirmationDialog, {
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   openPaymentHistoryDialog(flatId){
@@ -166,6 +177,19 @@ export class FlatDialogBox {
     this.dialogRef.close(amount);
   }
 }
+
+@Component({
+  selector: 'confirmation-dialogBox',
+  templateUrl: 'confirmation-dialogBox.html',
+})
+export class confirmationDialog {
+  constructor(public dialogRef: MatDialogRef<FlatDialogBox>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+
+  }
+}
+
+
 
 export interface DialogData {
   flatObj: any;

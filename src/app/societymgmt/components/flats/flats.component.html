@@ -1,3 +1,6 @@
+<div >
+  <div class="row">
+      <div class="col-2">
 <h3 appHighlighter>Flat Details</h3>
 <br>
 <br>
@@ -8,6 +11,9 @@
 </mat-radio-group>
 <br>
 <br>
+
+
+
 <mat-form-field>
   <mat-label>Select Society ID</mat-label>
   <mat-select [(ngModel)]="selectedSocietyId"
@@ -17,7 +23,13 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
+</div>
+<div class="col-10">
+  <br>
 <app-society></app-society>
+</div>
+</div>
+</div>
 <br>
 <div *ngIf="selectedFlatDetails">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

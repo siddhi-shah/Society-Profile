@@ -24,7 +24,7 @@
     <div>
       <div class="row">
         <div class="col-3">
-            <img width="30" height="230" class="profile" mat-card-image src="http://lorempixel.com/400/200/food/" alt="Photo of a Shiba Inu">
+            <img width="30" height="230" class="profile" mat-card-image src="http://lorempixel.com/300/200/food/" alt="Photo of a Shiba Inu">
         </div>
           
         <div class="col-3" *ngIf="loginUserInfo && loginUserInfo.name">
@@ -45,11 +45,11 @@
               </mat-card>
         </div>
 
-        <div class="col-6">
-            <div >
+        <div  class="col-6">
+            <div class="themeClass">
                 {{currentDate | date }}
-              </div>
-          <mat-radio-group aria-label="Select an option">
+              </div><br>
+          <mat-radio-group class="themeClass" aria-label="Select an option">
             <mat-radio-button value="white" appHighlighter (click)="showselectedTheme('white')"> White Theme
             </mat-radio-button>
             <mat-radio-button value="light" appHighlighter (click)="showselectedTheme('light')"> Light Theme
