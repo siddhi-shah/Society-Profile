@@ -36,7 +36,7 @@ export class FlatsComponent implements OnInit {
       console.log("owner id is", ownerId);
       this._SocietyService.getflatsbyowner(ownerId).subscribe((flatsinfo) => {
         console.log(flatsinfo);
-        this.flatInfo = flatsinfo.dbResponse;
+        this.flatInfo = flatsinfo.data;
         if (this.selectedSocietyId) {
           this.showFlatDetailsBySocietyId(this.selectedSocietyId);
         }

@@ -39,7 +39,7 @@ export class SocietyService {
 
 
   getflatsbyowner(ownerID): Observable<any>{
-    return this._httpclient.get(`${this.hostName}/society/flat/ownerid/?value=${ownerID}`)
+    return this._httpclient.get(`${this.lambdaHostName}/dev/flat/ownerFlats?ownerId=${ownerID}`)
       .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
   }
