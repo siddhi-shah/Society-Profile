@@ -41,7 +41,7 @@ export class SocietyComponent implements OnInit, OnChanges {
   }
   getSocietyById(societyID) {
     this._SocietyService.getSocietybyId(societyID).subscribe((societyList) => {
-      this.societyList = societyList.dbResponse[0];
+      this.societyList = societyList.data[0];
       console.log(societyList);
     })
   }

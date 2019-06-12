@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { SocietyService } from '../../reusable/services/society.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonServicesService } from '../../reusable/services/common-services.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -14,7 +14,7 @@ export class FlatsComponent implements OnInit {
   errorMessage;
   isClosedValue = false;
   uniqueSocietyId;
-  selectedSocietyId = 1;
+  selectedSocietyId;
   selectedFlatDetails;
   societyid;
   dataSource;
@@ -25,14 +25,32 @@ export class FlatsComponent implements OnInit {
   responseData;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog,public _SocietyService: SocietyService, public _ActivatedRoute: ActivatedRoute,
-    public _CommonServices: CommonServicesService) { }
+    public _CommonServices: CommonServicesService, public _router:Router) { }
 
   ngOnInit() {
     this.getFlatDetailByOwnerId();
   }
-  getFlatDetailByOwnerId(callback?: any) {
-    this._ActivatedRoute.parent.params.subscribe((params) => {
+
+  validateUserAgainstToken (ownerId){
+    return new Promise((resolve, reject)=>{
+      let token = localStorage.getItem("TOKEN")
+      let jwtData = token.split('.')[1];
+      let decodedJwtJsonData = window.atob(jwtData);
+      let decodedJwtData = JSON.parse(decodedJwtJsonData);
+      let tokenOwnerId = decodedJwtData.ownerid;
+      if(ownerId != tokenOwnerId) {
+        console.log("ownerid missmatch!!");
+        this._router.navigate(['login']);
+      } else {
+        resolve();
+      }
+    })
+  }
+
+   getFlatDetailByOwnerId(callback?: any) {
+    this._ActivatedRoute.parent.params.subscribe(async (params) => {
       let ownerId = params.ownerId;
+      await this.validateUserAgainstToken(ownerId);
       console.log("owner id is", ownerId);
       this._SocietyService.getflatsbyowner(ownerId).subscribe((flatsinfo) => {
         console.log(flatsinfo);
@@ -59,7 +77,7 @@ export class FlatsComponent implements OnInit {
     this.societyid = societyid;
     this._SocietyService.getFlatsBySocietyId(societyId).subscribe((flatsinfo) => {
       console.log(flatsinfo);
-      this.flatInfo = flatsinfo.dbResponse;
+      this.flatInfo = flatsinfo.data;
       this.showFlatDetailsBySocietyId(societyid);
       if (callback) {
         callback();

@@ -7,12 +7,13 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SocietyService {
-  hostName= "http://nodebw-env.xctnnannuz.us-east-1.elasticbeanstalk.com";
+  //hostName= "http://nodebw-env.xctnnannuz.us-east-1.elasticbeanstalk.com";
   lambdaHostName = "https://uedyhinf4i.execute-api.us-east-1.amazonaws.com"
   constructor(public _httpclient : HttpClient) { }
 
   login(email: string, password: string) :Observable<any>{
-    return this._httpclient.post(this.hostName+'/users/login', {
+    // return this._httpclient.post(this.hostName+'/users/login', {
+    return this._httpclient.post(this.lambdaHostName+'/dev/auth/loginUser', {
       email: email,
       password: password
     });
@@ -31,7 +32,6 @@ export class SocietyService {
   }
 
   updateFlatPayment(paymentObj): Observable<any>{
-    console.log("*****><><><>", paymentObj);
     return this._httpclient.put(`${this.lambdaHostName}/dev/payment-and-reciept/pendingPayment`,paymentObj)
       .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
@@ -46,20 +46,21 @@ export class SocietyService {
 
   getSocietybyId(societyId) : Observable<any>
   {
-    return this._httpclient.get(`${this.hostName}/society/society/societyid/?value=${societyId}`)
+    return this._httpclient.get(`${this.lambdaHostName}/dev/society/getSocietyInfo?societyId=${societyId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
   }
 
   getFlatsBySocietyId(societyId) : Observable<any>
   {
-    return this._httpclient.get(`${this.hostName}/society/flat/societyid/?value=${societyId}`)
+    return this._httpclient.get(`${this.lambdaHostName}/dev/flat/societyFlats?societyId=${societyId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
   }
   getLoginUserInfo(ownerId):Observable<any>
   {
-    return this._httpclient.get(`${this.hostName}/society/owner/ownerid/?value=${ownerId}`)
+    //return this._httpclient.get(`${this.hostName}/society/owner/ownerid/?value=${ownerId}`)
+    return this._httpclient.get(`${this.lambdaHostName}/dev/owner/ownerDetails?ownerId=${ownerId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
   }

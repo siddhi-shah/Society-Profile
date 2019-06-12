@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import {SocietyService} from '../../societymgmt/reusable/services/society.service';
+import {TokenService} from '../../societymgmt/reusable/services/token.service';
 import {CommonServicesService} from '../../societymgmt/reusable/services/common-services.service';
 
 @Component({
@@ -16,7 +17,7 @@ password;
 redirectUrl;
 
 
-  constructor(public _router:Router,public _societyService:SocietyService,
+  constructor(private _tokenService: TokenService,public _router:Router,public _societyService:SocietyService,
     public _activatedRoute:ActivatedRoute,public _commonService:CommonServicesService) { }
 
   ngOnInit() {
@@ -24,40 +25,23 @@ redirectUrl;
   }
   onLogin(username,password)
   {
-    this._societyService.login(username,password).subscribe(r => {
-      if (r.token) {
-      
-        console.log("token set successfully");
-
-        //if(this.redirectUrl == 'societymgmt'){
-          console.log(r.dbResponse);
-          console.log(r.dbResponse[0].ownerid);
-          let ownerId = r.dbResponse[0].ownerid;
-          this._commonService.emitLoginUserInfo(ownerId);
-          this._router.navigate(['societymgmt',r.dbResponse[0].ownerid,'flats']);
-          // this._commonService.emitLoginUserInfo(r.dbResponse[0].ownerid);
-        //} else {
-          //this._router.navigateByUrl(this.redirectUrl);
-        //  alert('dbfvbd');
-        //}
-        
-        //this.router.navigate(['societyManagment','society']);
-        //this.router.navigateByUrl('/societyManagment');
+    this._societyService.login(username,password).subscribe(result => {
+      if (result.data) {
+          
+          //let ownerId = result.data[0].ownerid;
+          //this._commonService.emitLoginUserInfo(ownerId);
+          this._tokenService.setToken(result.data);
+          console.log("data is ", result.data);
+          let jwtData = result.data.split('.')[1];
+          let decodedJwtJsonData = window.atob(jwtData);
+          let decodedJwtData = JSON.parse(decodedJwtJsonData);
+          let tokenOwnerId = decodedJwtData.ownerid;
+          this._router.navigate(['societymgmt',tokenOwnerId,'flats']);
       }
     },
     err => {
       alert(err);
     });
-    //  if(username == 'admin' && password=='admin')
-    //  {
-    //       let ownerId=1;
-    //         this._router.navigate(["societymgmt",ownerId, "flats"]);
-        
-    //  }
-    //  else
-    //  {
-    //    alert('Please enter correct username and password');
-    //  }
   }
 
 

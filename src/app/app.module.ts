@@ -24,7 +24,7 @@ import { ReverseCharactersPipe } from './societymgmt/reusable/pipes/reverse-char
 import { HighlighterDirective } from './societymgmt/reusable/directives/highlighter.directive';
 import { RegisterUserComponent } from './home/register-user/register-user.component';
 import { PendingpaymentComponent } from './societymgmt/components/flats/pendingpayment/pendingpayment.component';
-
+import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +56,7 @@ import { PendingpaymentComponent } from './societymgmt/components/flats/pendingp
    
   ],
   entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog],
-  providers: [],
+  providers: [NeedAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

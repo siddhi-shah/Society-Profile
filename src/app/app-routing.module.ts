@@ -11,7 +11,7 @@ import { BuildingComponent } from './societymgmt/components/building/building.co
 import { TenantsComponent } from './societymgmt/components/tenants/tenants.component';
 import { OwnerComponent } from './societymgmt/components/owner/owner.component';
 import { RegisterUserComponent } from './home/register-user/register-user.component';
-
+import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.service'
 
 const routes: Routes = [
   {path:"" ,redirectTo: '/login', pathMatch:"full"},
@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:"societymgmt/:ownerId",component:SocietymgmtComponent,
         children:[
           {path:"building",component:BuildingComponent},
-          {path:"flats",component:FlatsComponent},
+          {path:"flats",component:FlatsComponent, canActivate: [NeedAuthGuard] },
           {path:"owner",component:OwnerComponent},
           {path:"society",component:SocietyComponent},
           {path:"tenants",component:TenantsComponent}

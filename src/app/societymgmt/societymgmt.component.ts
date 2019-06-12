@@ -48,10 +48,10 @@ export class SocietymgmtComponent implements OnInit {
   }
   getloginUserInfo(ownerId) {
     this._societyService.getLoginUserInfo(ownerId).subscribe((userInfo) => {
-      this.loginUserInfo.name = userInfo.dbResponse[0].ownername;
-      this.loginUserInfo.id = userInfo.dbResponse[0].ownerid;
-      this.loginUserInfo.phone = userInfo.dbResponse[0].phoneNumber;
-      this.loginUserInfo.email = userInfo.dbResponse[0].email;
+      this.loginUserInfo.name = userInfo.data[0].ownername;
+      this.loginUserInfo.id = userInfo.data[0].ownerid;
+      this.loginUserInfo.phone = userInfo.data[0].phoneNumber;
+      this.loginUserInfo.email = userInfo.data[0].email;
       console.log(this.loginUserInfo.name);
     });
   }
