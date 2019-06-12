@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import configuration from './../../../config'
 
 const TOKEN = 'TOKEN';
 
@@ -12,7 +13,7 @@ const TOKEN = 'TOKEN';
 export class TokenService {
   // lambdaHostName = "localhost:3000"
   // validateTokenUrl = this.lambdaHostName+"/auth/verifyToken";
-  lambdaHostName= "https://uedyhinf4i.execute-api.us-east-1.amazonaws.com";
+  lambdaHostName= configuration.URL.LAMBDA_HOST_URL;
   validateTokenUrl = this.lambdaHostName+"/dev/auth/verifyToken";
   constructor(private http: HttpClient,  public _ActivatedRoute: ActivatedRoute) {
   }

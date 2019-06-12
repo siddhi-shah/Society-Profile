@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpErrorResponse} from '@angular/common/http';
 import {Observable,throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import configuration from './../../../config'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocietyService {
   //hostName= "http://nodebw-env.xctnnannuz.us-east-1.elasticbeanstalk.com";
-  lambdaHostName = "https://uedyhinf4i.execute-api.us-east-1.amazonaws.com"
+  lambdaHostName = configuration.URL.LAMBDA_HOST_URL;
   constructor(public _httpclient : HttpClient) { }
 
   login(email: string, password: string) :Observable<any>{
