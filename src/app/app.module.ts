@@ -13,7 +13,7 @@ import { FlatDialogBox } from './societymgmt/components/flats/flats.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './home/login/login.component';
 import { ErrorComponent } from './error/error.component';
-import { SocietymgmtComponent } from './societymgmt/societymgmt.component';
+import { SocietymgmtComponent } from './societymgmt/components/societymgmt.component';
 import { SocietyComponent } from './societymgmt/components/society/society.component';
 import { FlatsComponent } from './societymgmt/components/flats/flats.component';
 import { BuildingComponent } from './societymgmt/components/building/building.component';

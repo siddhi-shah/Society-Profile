@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonServicesService } from './reusable/services/common-services.service';
+import { CommonServicesService } from '../reusable/services/common-services.service';
 import { ActivatedRoute } from '@angular/router';
-import { SocietyService } from './reusable/services/society.service';
+import { SocietyService } from '../reusable/services/society.service';
 
 @Component({
   selector: 'app-societymgmt',
