@@ -14,7 +14,6 @@ export class NeedAuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean|Observable<boolean>{
 
     const redirectUrl = route['_routerState']['url'];
-    console.log("******", route['_routerState']);
       return new Observable<boolean>((observer) => {
         this._tokenService.isLogged().subscribe(isValid => {
           if(isValid) {

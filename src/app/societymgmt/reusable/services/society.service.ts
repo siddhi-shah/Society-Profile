@@ -13,7 +13,6 @@ export class SocietyService {
   constructor(public _httpclient : HttpClient) { }
 
   login(email: string, password: string) :Observable<any>{
-    // return this._httpclient.post(this.hostName+'/users/login', {
     return this._httpclient.post(this.lambdaHostName+'/dev/auth/loginUser', {
       email: email,
       password: password
