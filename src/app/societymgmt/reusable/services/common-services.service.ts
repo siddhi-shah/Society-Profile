@@ -8,6 +8,7 @@ export class CommonServicesService {
 
    societyInfo = new EventEmitter<any>();
    loginUserInfo = new EventEmitter<any>();
+   allowAccessFlag = new EventEmitter<any>();
 
   constructor() { }
 
@@ -18,6 +19,10 @@ export class CommonServicesService {
   emitLoginUserInfo(ownerId)
   {
     this.loginUserInfo.emit(ownerId);
+  }
+  emiteditRole(allowAccess)
+  {
+    this.allowAccessFlag.emit(allowAccess);
   }
 
   

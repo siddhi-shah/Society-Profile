@@ -23,6 +23,8 @@ export class FlatsComponent implements OnInit {
   paymentHistoryData;
   displayedHistoryColumns;
   responseData;
+  allowAccessCount=0;
+  allowAccess=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog,public _SocietyService: SocietyService, public _ActivatedRoute: ActivatedRoute,
     public _CommonServices: CommonServicesService, public _router:Router) { }
@@ -103,6 +105,7 @@ export class FlatsComponent implements OnInit {
   showFlatDetailsBySocietyId(societyid) {
     this.selectedFlatDetails = this.flatInfo.filter(val => val.societyid == societyid)
     this.dataSource = this.selectedFlatDetails;
+    this.showSubmitReceipt(this.dataSource);
   }
 
   openPaymentDialog(flat) {
@@ -161,24 +164,31 @@ export class FlatsComponent implements OnInit {
 
   displayedColumns: string[] = ['flatid', 'flatname', 'FlatType', 'buildingname', 'tenantid', 'pendingpayment', 'maintenanceAmount','createdDate', 'updatedDate', 'ownerid', 'pay', 'paymentHistory'];
 
-  // showFlatPatmentHistory(flatId){
-  //   this._SocietyService.getPaymentHistory(flatId).subscribe((data) => {
-  //     console.log("*****>>>>",data);
-  //     this.paymentHistoryData= data.data;
-  //     this.displayedHistoryColumns   = ['idpaymenthistory', 'paid', 'remainingbalance', 'createddate'];
-  //     const ELEMENT_DATA: flatPaymentHistory[] =data.data;
-  //     this.dataSource = new MatTableDataSource<flatPaymentHistory>(ELEMENT_DATA);
+ 
+  showSubmitReceipt(data)
+  {
+    this._ActivatedRoute.parent.params.subscribe((params) => {
+      let ownerId = params.ownerId;
 
-  //     this.dataSource.paginator = this.paginator;
-  //     //this.displayedColumns   = ['societyid', 'societyname', 'address', 'pincode','showBuilding', 'delete'];
-  //     //this._commonService.emitCalanderData(data.dbResponse);
-  //   },
-  //     error => {
-  //       console.log("-------->",error);
-  //       this.errorMessage = error.message;
-  //     });
-  // }
+      this.allowAccessCount = 0;
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        if (data[i].role == 2 && data[i].ownerid == ownerId) {
+          this.allowAccessCount++;
+        }
+      }
 
+      if (this.allowAccessCount >= 1) {
+        this.allowAccess = true;
+      }
+      else {
+        this.allowAccess = false;
+      }
+      this._CommonServices.emiteditRole(this.allowAccess);
+      console.log(this.allowAccess);
+
+    });
+  }
 
 }
 
