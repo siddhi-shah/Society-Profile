@@ -22,6 +22,10 @@ export class TokenService {
     localStorage.setItem(TOKEN, token);
   }
 
+  getToken():any {
+    return localStorage.getItem(TOKEN);
+  }
+
   isValidToken(token): Observable<any> {
     let headers = new HttpHeaders().set('x-access-token',token);
     console.log("token --- ",token);

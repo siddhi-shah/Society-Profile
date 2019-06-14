@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {SocietyMaterialModule} from './material-module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './societymgmt/reusable/services/token-interceptor.service'
 
 import { PaymentHistoryDialogBox } from './societymgmt/components/flats/flats.component';
 import { confirmationDialog } from './societymgmt/components/flats/flats.component';
@@ -56,7 +58,11 @@ import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.s
    
   ],
   entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog],
-  providers: [NeedAuthGuard],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  } ,NeedAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

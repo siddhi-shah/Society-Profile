@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonServicesService } from '../reusable/services/common-services.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { SocietyService } from '../reusable/services/society.service';
+import { TokenService } from '../reusable/services/token.service'
 
 @Component({
   selector: 'app-societymgmt',
@@ -19,7 +20,7 @@ export class SocietymgmtComponent implements OnInit {
     phone: ""
   }
 
-  constructor(public _commonService: CommonServicesService,
+  constructor(public _tokenService:TokenService, public _router:Router, public _commonService: CommonServicesService,
     public _activatedRoute: ActivatedRoute, public _societyService: SocietyService) { }
 
   ngOnInit() {
@@ -54,6 +55,10 @@ export class SocietymgmtComponent implements OnInit {
       this.loginUserInfo.email = userInfo.data[0].email;
       console.log(this.loginUserInfo.name);
     });
+  }
+  logout(){
+    this._tokenService.setToken("");
+    this._router.navigate(['login']);
   }
 
 }
