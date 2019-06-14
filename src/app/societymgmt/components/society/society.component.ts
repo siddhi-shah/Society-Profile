@@ -18,6 +18,7 @@ export class SocietyComponent implements OnInit, OnChanges {
     }
   }
   societyList;
+  allowSocietyInfoEdit;
   randomText;
   @Input()
   societyId: number
@@ -38,11 +39,15 @@ export class SocietyComponent implements OnInit, OnChanges {
       this.getSocietyById(societyID);
     }
     )
+   
   }
   getSocietyById(societyID) {
     this._SocietyService.getSocietybyId(societyID).subscribe((societyList) => {
       this.societyList = societyList.data[0];
       console.log(societyList);
+      this._CommonServices.allowAccessFlag.subscribe((allowAccess)=>{
+        this.allowSocietyInfoEdit=allowAccess;
+      })
     })
   }
 }
