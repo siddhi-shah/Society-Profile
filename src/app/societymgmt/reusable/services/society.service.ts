@@ -19,6 +19,20 @@ export class SocietyService {
     });
   } 
 
+  submitSocietyReceiptForm(societyReceiptModel,societyId){
+    return this._httpclient.post(this.lambdaHostName+'/dev/payment-and-reciept/societyReciept', {
+      buildingMaintenance: societyReceiptModel.bmaintenance,
+      parkingMaintenance: societyReceiptModel.pmaintenance,
+      municipalDue:societyReceiptModel.municipaldue,
+      sinkingFund:societyReceiptModel.sinkingfund,
+      electricityCharge:societyReceiptModel.electricitycharge,
+      createdBy:1,id:1,societyId:societyId,
+      flatTypeArr:[2]
+
+    });
+  }
+
+
   getPaymentStructure(paymentStructureId) {
     return this._httpclient.get(`${this.lambdaHostName}/dev/payment-and-reciept/societyReciept?paymentStructureId=${paymentStructureId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)

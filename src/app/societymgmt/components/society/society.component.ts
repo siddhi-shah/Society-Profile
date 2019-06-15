@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy, OnChanges, SimpleChanges, Inject } from '@angular/core';
 import { CommonServicesService } from '../../reusable/services/common-services.service';
 import { SocietyService } from '../../reusable/services/society.service';
 import { EventEmitter } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-society',
@@ -28,7 +29,7 @@ export class SocietyComponent implements OnInit, OnChanges {
     this.someText.emit(someText);
   }
   themeColor = "pink";
-  constructor(public _CommonServices: CommonServicesService, public _SocietyService: SocietyService) { }
+  constructor(public dialog: MatDialog,public _CommonServices: CommonServicesService, public _SocietyService: SocietyService) { }
 
   ngOnInit() {
     this.listenSocietyId();
@@ -50,4 +51,58 @@ export class SocietyComponent implements OnInit, OnChanges {
       })
     })
   }
+
+  openSocietyReceiptDialog(societyId){
+    this.dialog.open(SocietyReceiptDialogBox, {
+      data: {
+        societyId:societyId
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'SocietyReceiptDialogBox',
+  templateUrl: 'SocietyReceiptDialogBox.html',
+})
+export class SocietyReceiptDialogBox implements OnInit {
+  inputClass = {'is-invalid':false }
+  societyReceiptModel={bmaintenance:"0",
+             pmaintenance:"0",
+             municipaldue:"0",
+             sinkingfund:"0",
+             electricitycharge:"0"};
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
+  public _SocietyService: SocietyService,public dialogRef: MatDialogRef<SocietyReceiptDialogBox>) {
+  }
+
+  ngOnInit(){
+    
+  }
+
+  OnSubmitForm()
+  {
+    this._SocietyService.submitSocietyReceiptForm(this.societyReceiptModel,this.data.societyId).subscribe(result=>{
+        if(result){
+          alert('Submitted Successfully');
+         
+        }
+    },
+    err => {
+      alert(err);
+    });
+      // console.log(this.societyReceiptModel);
+       
+      //   console.log(this.data.societyId);
+  }
+  closeDialogBox()
+  {
+    this.dialogRef.close();
+  }
+  
+}
+export interface DialogData {
+ 
+  societyId:any
 }

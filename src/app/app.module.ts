@@ -12,6 +12,7 @@ import { TokenInterceptorService } from './societymgmt/reusable/services/token-i
 import { PaymentHistoryDialogBox } from './societymgmt/components/flats/flats.component';
 import { confirmationDialog } from './societymgmt/components/flats/flats.component';
 import { FlatDialogBox } from './societymgmt/components/flats/flats.component';
+import { SocietyReceiptDialogBox } from './societymgmt/components/society/society.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './home/login/login.component';
 import { ErrorComponent } from './error/error.component';
@@ -44,7 +45,8 @@ import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.s
     PaymentHistoryDialogBox,
     PendingpaymentComponent,
     FlatDialogBox,
-    confirmationDialog
+    confirmationDialog,
+    SocietyReceiptDialogBox
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.s
    ReactiveFormsModule,
    
   ],
-  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog],
+  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog,SocietyReceiptDialogBox],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

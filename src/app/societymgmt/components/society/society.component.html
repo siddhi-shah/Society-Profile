@@ -15,6 +15,7 @@
       <mat-card-actions *ngIf=allowSocietyInfoEdit>
         <button mat-button>Edit Info</button>
         <button mat-button>More</button>
+        <button mat-raised-button color="primary" (click)="openSocietyReceiptDialog(societyList.societyid)"> Society Receipt</button>
       </mat-card-actions>
     </mat-card>
   </div>
