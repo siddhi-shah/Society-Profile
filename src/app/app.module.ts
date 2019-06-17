@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {SocietyMaterialModule} from './material-module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './societymgmt/reusable/services/token-interceptor.service'
 
@@ -57,7 +58,7 @@ import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.s
    [MatButtonModule, MatCheckboxModule],
    SocietyMaterialModule,
    ReactiveFormsModule,
-   
+   NgMultiSelectDropDownModule.forRoot()
   ],
   entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog,SocietyReceiptDialogBox],
   providers: [{

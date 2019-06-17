@@ -19,16 +19,16 @@ export class SocietyService {
     });
   } 
 
-  submitSocietyReceiptForm(societyReceiptModel,societyId){
+  submitSocietyReceiptForm(societyReceiptModel){
     return this._httpclient.post(this.lambdaHostName+'/dev/payment-and-reciept/societyReciept', {
       buildingMaintenance: societyReceiptModel.bmaintenance,
       parkingMaintenance: societyReceiptModel.pmaintenance,
       municipalDue:societyReceiptModel.municipaldue,
       sinkingFund:societyReceiptModel.sinkingfund,
       electricityCharge:societyReceiptModel.electricitycharge,
-      createdBy:1,id:1,societyId:societyId,
-      flatTypeArr:[2]
-
+      createdBy:societyReceiptModel.createdBy,
+      societyId:societyReceiptModel.societyId,
+      flatTypeArr:societyReceiptModel.flatTypeArr
     });
   }
 
