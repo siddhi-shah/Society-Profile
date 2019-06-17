@@ -18,11 +18,7 @@ export class SocietyComponent implements OnInit, OnChanges {
   randomText;
   @Input()
   societyId: number
-  @Output()
-  someText = new EventEmitter<any>();
-  emitsomeText(someText) {
-    this.someText.emit(someText);
-  }
+
   themeColor = "pink";
   constructor( public _ActivatedRoute:ActivatedRoute, public dialog: MatDialog, public _CommonServices: CommonServicesService, public _SocietyService: SocietyService) { }
 
@@ -95,7 +91,7 @@ export class SocietyReceiptDialogBox implements OnInit {
     createdBy:null
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public _commonServicesService:CommonServicesService,
     public _SocietyService: SocietyService, public dialogRef: MatDialogRef<SocietyReceiptDialogBox>) {
   }
 
@@ -136,6 +132,7 @@ export class SocietyReceiptDialogBox implements OnInit {
     this._SocietyService.submitSocietyReceiptForm(this.societyReceiptModel).subscribe(result => {
       if(result){
         this.dialogRef.close();
+        this._commonServicesService.emitFormSubmitedEvent();
         alert('Submitted Successfully');
 
       }

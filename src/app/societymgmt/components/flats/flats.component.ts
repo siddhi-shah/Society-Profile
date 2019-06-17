@@ -16,7 +16,7 @@ export class FlatsComponent implements OnInit {
   uniqueSocietyId;
   selectedSocietyId;
   selectedFlatDetails;
-  societyid;
+  //societyid;
   dataSource;
   flatObj:any;
   selectedOption = "myFlats";
@@ -31,6 +31,15 @@ export class FlatsComponent implements OnInit {
 
   ngOnInit() {
     this.getFlatDetailByOwnerId();
+    this.listenMaintanaceFormSubmit();
+  }
+
+  listenMaintanaceFormSubmit(){
+    this._CommonServices.formSubmitedEvent.subscribe((flag)=>{
+      if(flag){
+        this.showFlatAndSocietyDetailBySocietyId(this.selectedSocietyId);
+      }
+    })
   }
 
   validateUserAgainstToken (ownerId){
@@ -76,7 +85,7 @@ export class FlatsComponent implements OnInit {
 
   getFlatDetailBySocietyId(societyid, callback?: any) {
     let societyId = societyid;
-    this.societyid = societyid;
+    this.selectedSocietyId = societyid;
     this._SocietyService.getFlatsBySocietyId(societyId).subscribe((flatsinfo) => {
       console.log(flatsinfo);
       this.flatInfo = flatsinfo.data;
