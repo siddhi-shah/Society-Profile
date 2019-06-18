@@ -1,0 +1,53 @@
+{{ownerInfoModel | json}}
+<form #oform="ngForm">
+    
+        <div class="form-group">
+                <label>Owner Name</label>
+              
+                <input type="text" #oname="ngModel" required class="form-control" name="oname"  [ngClass]="inputClass" [(ngModel)]="ownerInfoModel.ownername"> 
+                <small class="text-danger" *ngIf=oname.invalid>Owner Name is required</small>
+             
+            </div>
+            <div class="form-group">
+                    <label>Date of Birth</label>
+                    <br>
+                <mat-form-field>
+                        <input matInput #odateofbirth="ngModel" [matDatepicker]="picker" placeholder="Choose a date"  [ngClass]="inputClass" class="form-control" [(ngModel)]="ownerInfoModel.dateofbirth" name="odateofbirth">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <pre>{{ formatDate() }}</pre>
+        </div>
+
+        <div class="mb-3">
+                <label>Gender</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="omale" value="1" [(ngModel)]="ownerInfoModel.gender">
+                  <label class="form-check-label">Male</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="ofemale" value="2" [(ngModel)]="ownerInfoModel.gender">
+                  <label class="form-check-label">Female</label>
+           </div>
+      </div>
+
+            <div class="form-group">
+                    <label>Email</label>  
+                    <input type="email" #oemail="ngModel" required class="form-control" name="oemail" [class.is-invalid]="oemail.invalid" [(ngModel)]="ownerInfoModel.email"> 
+                    <small class="text-danger" *ngIf=oemail.invalid>Email is required</small>
+         </div>
+
+         <div class="form-group">
+                <label>Phone Number</label>  
+                <input type="number" #ophone="ngModel" required  pattern="^\d{10}$" class="form-control" name="ophone" [class.is-invalid]="ophone.invalid" [(ngModel)]="ownerInfoModel.phone"> 
+                <div *ngIf="ophone.errors">
+                    <!-- <small class="text-danger" *ngIf=uphone.invalid>Phone number is required</small> -->
+                    <small class="text-danger" *ngIf=ophone.errors.required>Phone number is required</small> 
+                  <small class="text-danger" *ngIf="ophone.errors.pattern">Phone number must be 10 digits</small>
+                </div>
+                
+            </div>
+
+            <button class="btn btn-primary" [disabled]="oform.form.invalid" (click)="OnSubmitForm()" type="submit">Submit</button>
+    <button class="btn btn-primary" (click)="closeDialogBox()" style="margin-left: 13px;">Close</button>
+</form>

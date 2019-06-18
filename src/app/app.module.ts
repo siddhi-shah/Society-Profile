@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {SocietyMaterialModule} from './material-module';
@@ -13,6 +14,7 @@ import { PaymentHistoryDialogBox } from './societymgmt/components/flats/flats.co
 import { confirmationDialog } from './societymgmt/components/flats/flats.component';
 import { FlatDialogBox } from './societymgmt/components/flats/flats.component';
 import { SocietyReceiptDialogBox } from './societymgmt/components/society/society.component';
+import {OwnerEditInfoDialogBox} from './societymgmt/components/owner/owner.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './home/login/login.component';
 import { ErrorComponent } from './error/error.component';
@@ -28,6 +30,9 @@ import { HighlighterDirective } from './societymgmt/reusable/directives/highligh
 import { RegisterUserComponent } from './home/register-user/register-user.component';
 import { PendingpaymentComponent } from './societymgmt/components/flats/pendingpayment/pendingpayment.component';
 import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.service'
+import { DatePipe } from '@angular/common';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +51,8 @@ import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.s
     PendingpaymentComponent,
     FlatDialogBox,
     confirmationDialog,
-    SocietyReceiptDialogBox
+    SocietyReceiptDialogBox,
+    OwnerEditInfoDialogBox
   ],
   imports: [
     BrowserModule,
@@ -59,12 +65,14 @@ import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.s
    ReactiveFormsModule,
    
   ],
-  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog,SocietyReceiptDialogBox],
+  entryComponents: [FlatDialogBox, PaymentHistoryDialogBox, confirmationDialog,SocietyReceiptDialogBox,OwnerEditInfoDialogBox],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  } ,NeedAuthGuard ],
+  } ,NeedAuthGuard, [DatePipe]
+],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

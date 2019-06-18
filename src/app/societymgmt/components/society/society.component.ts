@@ -3,6 +3,7 @@ import { CommonServicesService } from '../../reusable/services/common-services.s
 import { SocietyService } from '../../reusable/services/society.service';
 import { EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-society',
@@ -43,12 +44,15 @@ export class SocietyComponent implements OnInit, OnChanges {
    
   }
   getSocietyById(societyID) {
+
+    this._CommonServices.allowAccessFlag.subscribe((allowAccess)=>{
+      this.allowSocietyInfoEdit=allowAccess;
+    })
+
     this._SocietyService.getSocietybyId(societyID).subscribe((societyList) => {
       this.societyList = societyList.data[0];
       console.log(societyList);
-      this._CommonServices.allowAccessFlag.subscribe((allowAccess)=>{
-        this.allowSocietyInfoEdit=allowAccess;
-      })
+     
     })
   }
 
@@ -71,7 +75,15 @@ export class SocietyReceiptDialogBox implements OnInit {
              pmaintenance:"0",
              municipaldue:"0",
              sinkingfund:"0",
-             electricitycharge:"0"};
+             electricitycharge:"0",
+             flatTypeId:"default"};
+ selectedFlatTypes: any[];
+
+
+flatType=[{"flatTypeName":'1BHK',"flatTypeId":1},
+             {"flatTypeName":'2BHK',"flatTypeId":2},
+            {"flatTypeName":'3BHK',"flatTypeId":3},
+            {"flatTypeName":'4BHK',"flatTypeId":4}];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,
   public _SocietyService: SocietyService,public dialogRef: MatDialogRef<SocietyReceiptDialogBox>) {
@@ -100,6 +112,9 @@ export class SocietyReceiptDialogBox implements OnInit {
   {
     this.dialogRef.close();
   }
+
+
+
   
 }
 export interface DialogData {

@@ -1,3 +1,31 @@
-<p>
+<!-- <p>
   owner works!
-</p>
+</p> -->
+
+<div class="row">
+  <div class="col-6">
+      <img width="30" height="230" class="profile" mat-card-image src="https://picsum.photos/200/300" alt="Photo of a Shiba Inu">
+  </div>
+    
+  <div class="col-6" *ngIf="loginUserInfo && loginUserInfo.name">
+
+      <mat-card class="example-card">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title>{{loginUserInfo.name}}</mat-card-title>
+            <!-- <mat-card-subtitle>{{loginUserInfo.id}}</mat-card-subtitle> -->
+            <mat-card-subtitle>{{loginUserInfo.email}}</mat-card-subtitle>
+            <!-- <mat-card-subtitle>{{loginUserInfo.phone}}</mat-card-subtitle> -->
+            <!-- <mat-card-subtitle>{{loginUserInfo.dateOfBirth}}</mat-card-subtitle> -->
+          </mat-card-header>
+          <mat-card-actions>
+           
+            <button mat-button (click)="openOwnerEditInfoDialogBox()">Edit Info</button>
+            <button mat-button>More</button>
+          </mat-card-actions>
+        </mat-card>
+  </div>
+
+
+  <br>
+</div>
