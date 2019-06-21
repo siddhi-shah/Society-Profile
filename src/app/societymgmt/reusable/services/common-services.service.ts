@@ -9,8 +9,13 @@ export class CommonServicesService {
    societyInfo = new EventEmitter<any>();
    loginUserInfo = new EventEmitter<any>();
    allowAccessFlag = new EventEmitter<any>();
+   formSubmitedEvent = new EventEmitter<any>();
 
   constructor() { }
+
+  emitFormSubmitedEvent(){
+    this.formSubmitedEvent.emit(true);
+  }
 
   emitSocietyInfo(societyId)
   {
@@ -24,7 +29,4 @@ export class CommonServicesService {
   {
     this.allowAccessFlag.emit(allowAccess);
   }
-
-  
-
 }
