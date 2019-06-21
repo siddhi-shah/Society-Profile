@@ -19,6 +19,20 @@ export class SocietyService {
     });
   } 
 
+  submitSocietyReceiptForm(societyReceiptModel,societyId){
+    return this._httpclient.post(this.lambdaHostName+'/dev/payment-and-reciept/societyReciept', {
+      buildingMaintenance: societyReceiptModel.bmaintenance,
+      parkingMaintenance: societyReceiptModel.pmaintenance,
+      municipalDue:societyReceiptModel.municipaldue,
+      sinkingFund:societyReceiptModel.sinkingfund,
+      electricityCharge:societyReceiptModel.electricitycharge,
+      createdBy:1,id:1,societyId:societyId,
+      flatTypeArr:[2]
+
+    });
+  }
+
+
   getPaymentStructure(paymentStructureId) {
     return this._httpclient.get(`${this.lambdaHostName}/dev/payment-and-reciept/societyReciept?paymentStructureId=${paymentStructureId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)
@@ -63,5 +77,19 @@ export class SocietyService {
     return this._httpclient.get(`${this.lambdaHostName}/dev/owner/ownerDetails?ownerId=${ownerId}`)
     .pipe(catchError((error:HttpErrorResponse) => throwError(error)
     ));
+  }
+
+  updateOwnerInfoForm(ownerInfoModel,ownerId):Observable<any>
+  {
+    return this._httpclient.patch(this.lambdaHostName+'/dev/owner/:'+ownerId+'/ownerDetails', {
+			ownerName:ownerInfoModel.ownername,
+			dateOfBirth:ownerInfoModel.dateofbirth,
+			gender:ownerInfoModel.gender,
+      ownerId:ownerId,
+			email:ownerInfoModel.email,
+			phonenumber:ownerInfoModel.phone
+	})
+    .pipe(catchError((error:HttpErrorResponse) => throwError(error)
+    ));		
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonServicesService } from '../reusable/services/common-services.service';
 import { ActivatedRoute,  Router } from '@angular/router';
 import { SocietyService } from '../reusable/services/society.service';
-import { TokenService } from '../reusable/services/token.service'
+import { TokenService } from '../reusable/services/token.service';
+import {MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-societymgmt',
@@ -13,18 +14,14 @@ export class SocietymgmtComponent implements OnInit {
 
   themeColor = "white";
   currentDate = new Date();
-  loginUserInfo = {
-    name: "",
-    id: "",
-    email: "",
-    phone: ""
-  }
+ 
 
-  constructor(public _tokenService:TokenService, public _router:Router, public _commonService: CommonServicesService,
-    public _activatedRoute: ActivatedRoute, public _societyService: SocietyService) { }
+
+
+  constructor(public _tokenService:TokenService, public _router:Router) { }
 
   ngOnInit() {
-    this.listenOwnerId();
+   
   }
 
   showselectedTheme(selectTheme) {
@@ -37,28 +34,15 @@ export class SocietymgmtComponent implements OnInit {
       this.themeColor = "white";
     }
   }
-  listenOwnerId() {
-    this._activatedRoute.params.subscribe((params) => {
-      let ownerId = params.ownerId;
-      this.getloginUserInfo(ownerId);
-    })
-
-    this._commonService.loginUserInfo.subscribe((ownerId) => {
-      this.getloginUserInfo(ownerId);
-    });
-  }
-  getloginUserInfo(ownerId) {
-    this._societyService.getLoginUserInfo(ownerId).subscribe((userInfo) => {
-      this.loginUserInfo.name = userInfo.data[0].ownername;
-      this.loginUserInfo.id = userInfo.data[0].ownerid;
-      this.loginUserInfo.phone = userInfo.data[0].phoneNumber;
-      this.loginUserInfo.email = userInfo.data[0].email;
-      console.log(this.loginUserInfo.name);
-    });
-  }
+  
   logout(){
     this._tokenService.setToken("");
     this._router.navigate(['login']);
   }
 
+  
+
 }
+
+
+

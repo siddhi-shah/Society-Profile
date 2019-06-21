@@ -1,0 +1,68 @@
+<form #uform="ngForm">
+<div class="form-group">
+    <label>Building Maintenance</label>
+    <input type="text" #bmaintenance="ngModel" required class="form-control" name="bmaintenance"  [ngClass]="inputClass" [(ngModel)]="societyReceiptModel.bmaintenance"> 
+    <small class="text-danger" *ngIf=bmaintenance.invalid>Building Maintenance is required</small>
+ 
+</div>
+
+<div class="form-group">
+    <label>Parking Maintenance</label>
+    <input type="text" #pmaintenance="ngModel" required class="form-control" name="pmaintenance"  [ngClass]="inputClass" [(ngModel)]="societyReceiptModel.pmaintenance"> 
+    <small class="text-danger" *ngIf=pmaintenance.invalid>Parking Maintenance is required</small>
+ 
+</div>
+
+<div class="form-group">
+    <label>Municipal Due</label>
+    <input type="text" #municipaldue="ngModel" required class="form-control" name="municipaldue"  [ngClass]="inputClass" [(ngModel)]="societyReceiptModel.municipaldue"> 
+    <small class="text-danger" *ngIf=municipaldue.invalid>Municipal Due is required</small>
+ 
+</div>
+
+<div class="form-group">
+    <label>Sinking Fund</label>
+    <input type="text" #sinkingfund="ngModel" required class="form-control" name="sinkingfund"  [ngClass]="inputClass" [(ngModel)]="societyReceiptModel.sinkingfund"> 
+    <small class="text-danger" *ngIf=sinkingfund.invalid>Sinking Fund is required</small>
+ 
+</div>
+
+<div class="form-group">
+    
+    <label>Electricity Charges</label>
+    <input type="text" #electricitycharge="ngModel" required class="form-control" name="electricitycharge"  [ngClass]="inputClass" [(ngModel)]="societyReceiptModel.electricitycharge"> 
+    <small class="text-danger" *ngIf=electricitycharge.invalid>Electricity Charge is required</small>
+ 
+</div>
+
+<div class="form-group">
+  <select class="custom-select" (change)="validateSelection(societyReceiptModel.flatTypeId)" [(ngModel)]="societyReceiptModel.flatTypeId"  name="flatType">
+    <option value="default">Please select flat Type</option>
+    <!-- <option  [value]="uType.userId" *ngFor= "let uType of userType" >{{uType.userTypeName}}</option> --> -->
+    <option><input type="checkbox" class="form-control" [ngClass]="inputClass"></option>
+    <option  [value]="fType.flatTypeId" *ngFor= "let fType of flatType" >{{fType.flatTypeName}}</option>
+  </select>
+
+</div>
+
+<mat-list-item class="primary-imenu-item" role="listitem">
+    <mat-form-field class="select-form">
+        <mat-select placeholder="Years" name="year" class="filter-select" [(ngModel)]="selectedFlatTypes" 
+        multiple #yearSelect="ngModel">
+          <mat-option disabled="disabled" class="filter-option">
+            <input type="checkbox"(click)="selectAll(checkAll.checked, yearSelect, flatType)" #checkAll>
+            
+          </mat-option>
+          <mat-option [value]="fType.flatTypeId" *ngFor= "let fType of flatType" >
+            {{fType.flatTypeName}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </mat-list-item>
+
+  
+
+
+<button class="btn btn-primary" [disabled]="uform.form.invalid" (click)="OnSubmitForm()" type="submit">Submit</button>
+<button class="btn btn-primary" (click)="closeDialogBox()" style="margin-left: 13px;">Close</button>
+</form>
