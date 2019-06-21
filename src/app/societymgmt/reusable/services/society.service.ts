@@ -81,7 +81,7 @@ export class SocietyService {
 
   updateOwnerInfoForm(ownerInfoModel,ownerId):Observable<any>
   {
-    return this._httpclient.patch(this.lambdaHostName+'/dev/owner/:'+ownerId+'/ownerDetails', {
+    return this._httpclient.patch(this.lambdaHostName+'/dev/owner/'+ownerId+'/ownerDetails', {
 			ownerName:ownerInfoModel.ownername,
 			dateOfBirth:ownerInfoModel.dateofbirth,
 			gender:ownerInfoModel.gender,

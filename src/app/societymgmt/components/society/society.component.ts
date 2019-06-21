@@ -58,7 +58,6 @@ export class SocietyComponent implements OnInit, OnChanges {
   }
 
   openSocietyReceiptDialog(societyId) {
-
     this.dialog.open(SocietyReceiptDialogBox, {
       data: {
         societyId: societyId,
@@ -141,11 +140,7 @@ export class SocietyReceiptDialogBox implements OnInit {
   }
   closeDialogBox(){
     this.dialogRef.close();
-  }
-
-
-
-  
+  }  
 }
 export interface DialogData {
 

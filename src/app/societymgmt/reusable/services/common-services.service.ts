@@ -10,11 +10,16 @@ export class CommonServicesService {
    loginUserInfo = new EventEmitter<any>();
    allowAccessFlag = new EventEmitter<any>();
    formSubmitedEvent = new EventEmitter<any>();
+   ownerFormEvent = new EventEmitter<any>();
 
   constructor() { }
 
   emitFormSubmitedEvent(){
     this.formSubmitedEvent.emit(true);
+  }
+
+  emitOwnerFormSubmitedEvent(){
+    this.ownerFormEvent.emit(true);
   }
 
   emitSocietyInfo(societyId)
