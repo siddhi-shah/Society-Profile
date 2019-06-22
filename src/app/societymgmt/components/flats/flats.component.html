@@ -55,6 +55,12 @@
     </ng-container>
 
     <!-- Flat Name Column -->
+    <ng-container matColumnDef="ownername">
+      <th mat-header-cell *matHeaderCellDef> Owner Name </th>
+      <td mat-cell *matCellDef="let flat"> {{flat.ownername }} </td>
+    </ng-container>
+
+    <!-- Flat Name Column -->
     <ng-container matColumnDef="FlatType">
       <th mat-header-cell *matHeaderCellDef> Flat Type </th>
       <td mat-cell *matCellDef="let flat"> {{flat.FlatType}}BHK </td>

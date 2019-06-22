@@ -68,6 +68,9 @@ export class FlatsComponent implements OnInit {
         this.flatInfo = flatsinfo.data;
         if (this.selectedSocietyId) {
           this.showFlatDetailsBySocietyId(this.selectedSocietyId);
+        } else {
+          //this.selectedSocietyId = flatsinfo.data[0].societyid;
+          //this.showFlatAndSocietyDetailBySocietyId(this.selectedSocietyId);
         }
         if (callback) {
           callback();
@@ -171,7 +174,7 @@ export class FlatsComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['flatid', 'flatname', 'FlatType', 'buildingname', 'tenantid', 'pendingpayment', 'maintenanceAmount','createdDate', 'updatedDate', 'ownerid', 'pay', 'paymentHistory'];
+  displayedColumns: string[] = ['flatid', 'flatname', 'ownername', 'FlatType', 'buildingname', 'tenantid', 'pendingpayment', 'maintenanceAmount','createdDate', 'updatedDate', 'ownerid', 'pay', 'paymentHistory'];
 
  
   showSubmitReceipt(data)
