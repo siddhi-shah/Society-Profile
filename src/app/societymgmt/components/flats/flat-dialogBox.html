@@ -1,8 +1,12 @@
 <h1 mat-dialog-title>Payment Form</h1>
-<div mat-dialog-content style="overflow: auto">
+<div mat-dialog-actions style="margin-left: 590px;
+margin-top: -57px;">
+        <button mat-button mat-dialog-close cdkFocusInitial >X</button>
+ </div>
+<div mat-dialog-content style="overflow: auto;max-width: 700px;">
     <app-pendingpayment [pendingPaymentFlatObj]="data.flatObj" (paidAmount)="paymentMethod($event)">
     </app-pendingpayment>
-    <div mat-dialog-actions>
-        <button mat-button mat-dialog-close cdkFocusInitial>close</button>
-    </div>
+    <!-- <div mat-dialog-actions>
+        <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+    </div> -->
 </div>
