@@ -22,10 +22,12 @@
   </p>
 
   <div class="button">
-      <button mat-raised-button color="primary" (click)="onLogin(username,password)">Login</button>
-      <button mat-raised-button color="primary"  routerLink="/registerUser">Register User</button>
-  </div>
-
+      <button mat-raised-button (click)="onLogin(username,password)">Login</button> &nbsp;
+      <!-- <button mat-raised-button color="primary"  routerLink="/registerUser">Register User</button> -->
+      <!-- <button mat-raised-button (click)="googleLogin()">Sign In With <i class="fa fa-google-plus-circle" style="font-size:28px;color:red"></i></button> -->
+      <button mat-raised-button id="googleBtn">Sign In With <i class="fa fa-google-plus-circle" style="font-size:28px;color:red"></i></button>
+    </div>
+    
 </form>
 </mat-card-content>
 </mat-card>

@@ -12,7 +12,7 @@ const TOKEN = 'TOKEN';
 })
 export class TokenService {
   lambdaHostName= configuration.URL.LAMBDA_HOST_URL;
-  validateTokenUrl = this.lambdaHostName+"/dev/auth/verifyToken";
+  validateTokenUrl = this.lambdaHostName+"/auth/verifyToken";
   constructor(private http: HttpClient,  public _ActivatedRoute: ActivatedRoute) {
   }
 
