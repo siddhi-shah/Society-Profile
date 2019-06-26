@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter,Inject } from '@angular/core';
-import { SocietyService } from '../../../reusable/services/society.service';
+import { SocietyService } from 'src/app/societymgmt/reusable/services/society.service';
 
 @Component({
   selector: 'app-pendingpayment',

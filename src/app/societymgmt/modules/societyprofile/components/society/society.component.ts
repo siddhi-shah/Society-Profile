@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, OnDestroy, OnChanges, SimpleChanges, Inject } from '@angular/core';
-import { CommonServicesService } from '../../reusable/services/common-services.service';
-import { SocietyService } from '../../reusable/services/society.service';
+import { CommonServicesService } from 'src/app/societymgmt/reusable/services/common-services.service';
+import { SocietyService } from 'src/app/societymgmt/reusable/services/society.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 

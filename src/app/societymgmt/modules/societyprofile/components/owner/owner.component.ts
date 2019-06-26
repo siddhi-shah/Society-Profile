@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute,  Router } from '@angular/router';
-import { SocietyService } from '../../reusable/services/society.service';
-import { TokenService } from '../../reusable/services/token.service';
+import { SocietyService } from 'src/app/societymgmt/reusable/services/society.service';
+import { TokenService } from 'src/app/societymgmt/reusable/services/token.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA, MAT_DATE_FORMATS } from '@angular/material';
-import { CommonServicesService } from '../../reusable/services/common-services.service';
+import { CommonServicesService } from 'src/app/societymgmt/reusable/services/common-services.service';
 import { DatePipe } from '@angular/common';
 
 @Component({

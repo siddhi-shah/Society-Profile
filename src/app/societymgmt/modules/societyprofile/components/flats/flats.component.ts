@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { SocietyService } from '../../reusable/services/society.service';
+import { SocietyService } from 'src/app/societymgmt/reusable/services/society.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonServicesService } from '../../reusable/services/common-services.service';
+import { CommonServicesService } from 'src/app/societymgmt/reusable/services/common-services.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 @Component({

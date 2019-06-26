@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonServicesService } from '../reusable/services/common-services.service';
+import { CommonServicesService } from 'src/app/societymgmt/reusable/services/common-services.service';
 import { ActivatedRoute,  Router } from '@angular/router';
-import { SocietyService } from '../reusable/services/society.service';
-import { TokenService } from '../reusable/services/token.service';
+import { SocietyService } from 'src/app/societymgmt/reusable/services/society.service';
+import { TokenService } from 'src/app/societymgmt/reusable/services/token.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({

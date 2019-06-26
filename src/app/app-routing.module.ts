@@ -4,12 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './home/login/login.component';
 
 import { ErrorComponent } from './error/error.component';
-import { SocietymgmtComponent } from './societymgmt/components/societymgmt.component';
-import { SocietyComponent } from './societymgmt/components/society/society.component';
-import { FlatsComponent } from './societymgmt/components/flats/flats.component';
-import { BuildingComponent } from './societymgmt/components/building/building.component';
-import { TenantsComponent } from './societymgmt/components/tenants/tenants.component';
-import { OwnerComponent } from './societymgmt/components/owner/owner.component';
+import { SocietymgmtComponent } from './societymgmt/modules/societyprofile/components/societymgmt.component';
+import { SocietyComponent } from './societymgmt/modules/societyprofile/components/society/society.component';
+import { FlatsComponent } from './societymgmt/modules/societyprofile/components/flats/flats.component';
+import { BuildingComponent } from './societymgmt/modules/societyprofile/components/building/building.component';
+import { TenantsComponent } from './societymgmt/modules/societyprofile/components/tenants/tenants.component';
+import { OwnerComponent } from './societymgmt/modules/societyprofile/components/owner/owner.component';
 import { RegisterUserComponent } from './home/register-user/register-user.component';
 import { NeedAuthGuard } from './societymgmt/reusable/services/need-auth-guard.service'
 
