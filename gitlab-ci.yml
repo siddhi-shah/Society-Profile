@@ -1,0 +1,41 @@
+variables:
+  ANGULAR_BUCKET: "angular-society-bucket"
+
+stages:
+  - build
+  - deploy
+
+build-dev:
+  stage: build
+  image: node:8.10
+  tags:
+    - docker
+  script:
+    - npm install
+    #- npm run lint
+    - npm run build
+  cache:
+    paths:
+    - node_modules/
+  artifacts:
+    expire_in: 1 week
+    paths:
+     - build/*
+  only:
+    - varun-uidevelopment
+
+deploy-dev:
+  stage: deploy
+  image: python:latest
+  tags:
+    - docker
+  dependencies:
+    - build-dev
+  script:
+    - pip install awscli
+    - aws s3 sync build/Society s3://$REACT_BUCKET
+    # - aws s3 cp ./dist s3://$TEST_BUCKET -recursive -acl public-read
+  environment:
+    name: development
+  only:
+    - dev
