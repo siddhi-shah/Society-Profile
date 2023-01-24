@@ -24,40 +24,33 @@ redirectUrl;
   }
   onLogin(username,password)
   {
-    this._societyService.login(username,password).subscribe(r => {
-      if (r.token) {
+    // this._societyService.login(username,password).subscribe(r => {
+    //   if (r.token) {
       
-        console.log("token set successfully");
+    //     console.log("token set successfully");
 
-        //if(this.redirectUrl == 'societymgmt'){
-          console.log(r.dbResponse);
-          console.log(r.dbResponse[0].ownerid);
-          let ownerId = r.dbResponse[0].ownerid;
-          this._commonService.emitLoginUserInfo(ownerId);
-          this._router.navigate(['societymgmt',r.dbResponse[0].ownerid,'flats']);
-          // this._commonService.emitLoginUserInfo(r.dbResponse[0].ownerid);
-        //} else {
-          //this._router.navigateByUrl(this.redirectUrl);
-        //  alert('dbfvbd');
-        //}
+    //     if(this.redirectUrl == 'societymgmt'){
+    //       console.log(r.dbResponse);
+    //       console.log(r.dbResponse[0].ownerid);
+    //       let ownerId = r.dbResponse[0].ownerid;
+    //       this._commonService.emitLoginUserInfo(ownerId);
+    //       this._router.navigate(['societymgmt',r.dbResponse[0].ownerid,'flats']);
+         
+    //   }
+    // },
+    // err => {
+    //   alert(err);
+    // });
+     if(username == 'admin' && password=='admin')
+     {
+          let ownerId=1;
+            this._router.navigate(["societymgmt",ownerId, "flats"]);
         
-        //this.router.navigate(['societyManagment','society']);
-        //this.router.navigateByUrl('/societyManagment');
-      }
-    },
-    err => {
-      alert(err);
-    });
-    //  if(username == 'admin' && password=='admin')
-    //  {
-    //       let ownerId=1;
-    //         this._router.navigate(["societymgmt",ownerId, "flats"]);
-        
-    //  }
-    //  else
-    //  {
-    //    alert('Please enter correct username and password');
-    //  }
+     }
+     else
+     {
+       alert('Please enter correct username and password');
+     }
   }
 
 
